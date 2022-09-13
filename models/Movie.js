@@ -6,32 +6,17 @@ const MovieSchema = new Schema(
 {
     title:
     {
-        type:String,
+        type: String,
         required: true
     },
-    imgUrl:
+    imgUrl: String,
+    trailerUrltype: String,
+    director: String,
+    year: String,
+    review: String,
+    author:
     {
-        type: String,
-    },
-    trailerUrl:
-    {
-        type: String,
-    },
-    director:
-    {
-        type: String,
-    },
-    year:
-    {
-        type: String,
-    },
-    review:
-    {
-        type: String,
-    },
-    user:
-    {
-        type:Schema.ObjectId,
+        type: Schema.ObjectId,
         ref: "User"
     },
     date:
