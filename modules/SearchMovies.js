@@ -7,13 +7,15 @@ async function SearchMovies(req, res) {
     const searchInput = req.query.searchQuery
     console.log(searchInput)
     //create a url variable using template literals
-    const url = encodeURI(`https://api.themoviedb.org/3/search/movies?api_key=54e8b9f47e8e47a620aee4ebf801dd0c&language=en-US&query${searchInput}&page=1&include_adult=false`)
+    console.log(process.env.TMDB_API_KEY)
+    const url = encodeURI(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&language=en-US&query=${searchInput}&page=1&include_adult=false`)
     //send a fetch request to the server based on that variable
+    console.log("URLLLL", url);
     try {
         const response = await axios.get(url)
         // array response
-        console.log(response)
-        // res.send(response.results)
+        console.log(response.data.results)
+        res.status(200).send(response.data.results)
     } catch (err) {
         console.log(`error: ${err}`)
     }
