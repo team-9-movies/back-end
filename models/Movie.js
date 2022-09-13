@@ -34,6 +34,11 @@ const MovieSchema = new Schema(
         type:Schema.ObjectId,
         ref: "User"
     },
+    date:
+    {
+        type: Date,
+        default: Date.now()
+    }
 
 });
 
