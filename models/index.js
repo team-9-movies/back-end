@@ -17,7 +17,7 @@ const db = mongoose.connection;
 //console log what host and port it's ruwhen nning on
 db.once("open", () =>
 {
-    console.log(`Connected to MongoDB at 3000`);
+    console.log(`Connected to MongoDB at 3001`);
 });
 
 db.on("error", (err) =>

@@ -8,3 +8,6 @@ const db = require("../../models");
 router.get('/', (req,res) => {
     console.log("/movies working")
 })
+
+
+module.exports = router;
