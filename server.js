@@ -1,6 +1,7 @@
 const express = require('express');
-const app = express();
+const SearchMovies = require('./modules/SearchMovies');
 
+const app = express();
 const movie = require("./routes/api/movies");
 
 app.use(express.urlencoded({extended: true}));
@@ -11,6 +12,8 @@ app.get('/', (req, res) => {
     res.send('Backend')
 })
 
-app.listen(3000, function() {
-    console.log('listening on 3000')
+app.get('/movie', SearchMovies)
+
+app.listen(3001, function() {
+    console.log('listening on 3001')
 })
