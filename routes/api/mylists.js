@@ -4,6 +4,21 @@ const router = express.Router();
 const db = require("../../models");
 const getUserId = require("../../modules/getUserId");
 
+router.get('/', (req,res) => {
+    // if(req.query.filter){
+        // let f = req.query.filter.spliit(',')
+        // console.log(f)
+        db.Movie.find({'title':'testing'}).sort('-date')
+        .then(foundMovie => {
+            res.send(foundMovie)
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status.apply(503).send({message: 'Database asleep?'})
+        })
+    // }
+})
+
 router.get('/favorites', async (req,res) => {
     // console.log("/mylists working")
     // const allMovies = await db.Movie.find({})
