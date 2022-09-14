@@ -5,7 +5,7 @@ const MONGO_URI = process.env.MONGO_URI
 //Mongo connection
 mongoose.connect(MONGO_URI,
     {
-        // useNewUrlParser: true,
+        useNewUrlParser: true,
         useUnifiedTopology: true
 
     });
@@ -28,6 +28,5 @@ db.on("error", (err) =>
 
 module.exports.User = require("./User");
 module.exports.Movie = require("./Movie");
-
-
+module.exports.Review = require("./Review");
 
