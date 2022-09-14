@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Movie } = require(".");
+// const { Movie } = require(".");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(

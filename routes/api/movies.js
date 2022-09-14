@@ -7,6 +7,7 @@ const db = require("../../models");
 
 router.get('/', (req,res) => {
     console.log("/movies working")
+    res.send('/movies working')
 })
 
 
