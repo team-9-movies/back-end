@@ -4,37 +4,17 @@ const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema(
     {
-        apiId:
-        {
-            type: String,
-            required: true,
-            unique: true
-        },
-        title:
-        {
-            type: String,
-            required: true
-        },
+        apiId: { type: Number, required: true, unique: true },
+        title: { type: String, required: true },
+        overview: String,
         imgUrl: String,
         trailerUrltype: String,
         director: String,
         year: String,
         review: String,
-        favoriteOf:
-        [{
-            type: Schema.Types.ObjectId,
-            ref: "User"
-        }],
-        reviews:
-            [{
-                type: Schema.Types.ObjectId,
-                ref: "Review"
-            }],
-        date:
-        {
-            type: Date,
-            default: Date.now()
-        }
+        favoriteOf: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+        date: { type: Date, default: Date.now() }
     });
 
 module.exports = Movie = mongoose.model("Movie", MovieSchema);
