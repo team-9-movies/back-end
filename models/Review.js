@@ -8,6 +8,7 @@ const ReviewSchema = new Schema(
     email: { type: String, required: true },
     nickName: String,
     movie: { type: Schema.Types.ObjectId, ref: 'Movie' },
+    apiId: Number,
     date: { type: Date, default: Date.now() }
   });
 
