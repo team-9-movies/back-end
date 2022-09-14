@@ -5,8 +5,9 @@ const MONGO_URI = process.env.MONGO_URI
 //Mongo connection
 mongoose.connect(MONGO_URI,
     {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        // useNewUrlParser: true,
+        useUnifiedTopology: true
+
     });
 
 //mongoose connection object
