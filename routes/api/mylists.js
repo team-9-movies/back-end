@@ -6,7 +6,18 @@ const router = express.Router();
 const db = require("../../models");
 
 router.get('/', (req,res) => {
-    console.log("/movies working")
+    // if(req.query.filter){
+        // let f = req.query.filter.spliit(',')
+        // console.log(f)
+        db.Movie.find({'title':'testing'}).sort('-date')
+        .then(foundMovie => {
+            res.send(foundMovie)
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status.apply(503).send({message: 'Database asleep?'})
+        })
+    // }
 })
 
 router.post('/', (req,res) =>
@@ -17,7 +28,7 @@ router.post('/', (req,res) =>
     })
     .catch(err => {
         console.log('Error while creating new post', err)
-        if(err.name === 'Valication Error'){
+        if(err.name === 'Validation Error'){
             res.status(406).send({message: 'Validation Error'})
         } else {
             res.status(503).send({message: "Database or server error!"})
