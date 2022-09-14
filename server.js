@@ -4,6 +4,8 @@ const cors = require('cors');
 const app = express();
 const movies = require("./routes/api/movies");
 const myLists = require("./routes/api/mylists")
+const morgan = require('morgan');
+app.use(morgan('dev'));
 
 app.use(cors());
 app.use(express.urlencoded({extended: true}));

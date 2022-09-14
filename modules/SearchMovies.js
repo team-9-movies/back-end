@@ -7,7 +7,7 @@ async function SearchMovies(req, res) {
     const searchInput = req.query.searchQuery
     console.log(searchInput)
     //create a url variable using template literals
-    console.log(process.env.TMDB_API_KEY)
+
     const url = encodeURI(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&language=en-US&query=${searchInput}&page=1&include_adult=false`)
     //send a fetch request to the server based on that variable
     console.log("URLLLL", url);
