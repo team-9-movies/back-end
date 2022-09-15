@@ -2,10 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 
-
 const db = require("../../models");
 
-//getting the review for the movie 
+//getting reviews for the movie 
 router.get('/', (req,res) => {
 
     const apiId = req.query.apiid;
@@ -22,8 +21,7 @@ router.get('/', (req,res) => {
 });
 
 
-
-// adding reviews to the movie
+//adding review to the movie
 router.put('/', (req,res)=>
 {
     const apiId = req.query.apiid;
@@ -54,6 +52,57 @@ router.put('/', (req,res)=>
 })
 
 
+// editing review 
+router.put('/edit', (req,res)=>{
+    
+    const apiId = req.query.apiid
+    console.log(apiId)
+    console.log(req.body.reviewId)
+    db.Movie.findOneAndUpdate(
+        {
+            apiId: apiId,
+            reviews:{$elemMatch:{_id:req.body.reviewId}}
+        },
+        {
+            $set:
+            {"reviews.$.text": req.body.text}
+        }
+    ).then(editedReview => {
+        res.send(editedReview)
+        // console.log(editedReview)
+    }).catch(err => {
+        console.log(err)
+        res.status(503).send({message: 'server error'})
+    })
+}
+)
+
+
+//deleting review 
+router.put('/delete', (req,res)=>{   
+    const apiId = req.query.apiid
+    console.log(apiId)
+    console.log(req.body.referencedReview)
+    db.Movie.findOneAndUpdate(
+        {
+            apiId: apiId
+        },
+        {
+            $pull: {reviews: {_id: req.body.id}}
+        },
+        {
+            new: tru
+        })
+        .then(deletedcomment => {
+            res.send(deletedcomment)
+            console.log(deletedcomment)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(503).send({message: 'server error'})
+        })
+
+    })
 
 
 
