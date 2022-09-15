@@ -6,26 +6,49 @@ const router = express.Router();
 const db = require("../../models");
 
 //getting the review for the movie 
-router.get('/', (req,res) => {
-    console.log("/movies working")
-    res.send('/movies working')
+router.get('/', async (req,res) => {
+
+    const apiId = req.query.apiid;
+    await db.Movie.find({apiId: apiId})
+    .populate({path:'reviews',select:'text'})
+    .then(foundReviews => {
+        res.send(foundReviews)
+    })  
+
 })
 
-//creating the review
-router.post('/new', (req,res) => {
-    db.Review.create(req.body)
-    .then(createdReview => {
-        res.status(201).send(createdReview)
+
+// adding comments
+router.put('/', (req,res)=>
+{
+    const apiId = req.query.apiid;
+    db.Movie.findOneAndUpdate({
+        apiId:apiId
+    }, 
+    {$push:
+        {
+            reviews: {
+            text: req.body.text, 
+            user: req.body.user,
+            email: req.body.email,
+            nickName: req.body.nickName
+            }
+        }       
+    },   
+    {
+        new: true
+    })
+    .then(updatedMovie => {
+        res.send(updatedMovie)
+        console.log(updatedMovie)
     })
     .catch(err => {
-        console.log('Error while creating new review', err)
-        if(err.name === 'Validation Error'){
-            res.status(406).send({message: 'Validation Error'})
-        } else {
-            res.status(503).send({message: "Database or server error!"})
-        }
+        console.log(err)
+        res.status(503).send({message: 'server error'})
     })
 })
+
+
 
 
 
