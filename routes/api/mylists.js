@@ -71,6 +71,34 @@ router.post('/', async (req, res) => {
             })
     }
 
+    // TODO: get review for details button
+    router.get('/getreview', async()=>{
+        
+    })
+
+    // TODO: add review
+    router.post('/addreview', async (req, res)=> {
+        // receive: review text, user email, user name, movie mongodb _id
+        // look up database _id of user by email
+        // create a review with that user _id
+        // send back response with created review (but populate first)        
+    })
+
+    // TODO: edit a review (only author can edit)
+
+    // TODO: delete a review (only author can delete)
+
+    // TODO: delete movie from favorites (using put instead of delete, because we need both the movie id and user id in body)
+    router.put('/', async (req, res)=>{
+        // receive movie id and user id
+        // find user by id, then loop through movies array and delete the movie id there
+
+        // then find the movie by id, and check if favoriteOf array length is less than 2
+        //      if yes, then delete that movie from collection (isung deleteOne({_id: movie id}))
+        //      else, just update favoriteOf array by removing the movie Id from it (keep the movie document itself)
+
+    })
+
 })
 
 module.exports = router;
