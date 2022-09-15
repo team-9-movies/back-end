@@ -5,9 +5,6 @@ const db = require("../../models");
 const getUser = require("../../modules/getUser");
 
 router.get('/', (req, res) => {
-    // if(req.query.filter){
-    // let f = req.query.filter.spliit(',')
-    // console.log(f)
     db.Movie.find({ 'title': 'testing' }).sort('-date')
         .then(foundMovie => {
             res.send(foundMovie)
@@ -100,5 +97,13 @@ router.post('/', async (req, res) => {
     })
 
 })
+
+// creating new user 
+router.post('/newUser', async(req, res) => {
+    db.User.create(req.body)
+    .then(createdUser => {
+        res.status(201).send(createdUser)
+    })
+ })
 
 module.exports = router;

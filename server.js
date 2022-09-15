@@ -3,7 +3,8 @@ const SearchMovies = require('./modules/SearchMovies');
 const cors = require('cors');
 const app = express();
 const movies = require("./routes/api/movies");
-const myLists = require("./routes/api/mylists")
+const myLists = require("./routes/api/mylists");
+const reviews = require("./routes/api/reviews");
 const morgan = require('morgan');
 app.use(morgan('dev'));
 
@@ -20,6 +21,7 @@ app.get('/movie', SearchMovies)
 
 app.use('/movies', movies);
 app.use('/mylists', myLists);
+app.use('/reviews', reviews);
 
 app.listen(3001, function() {
     console.log('listening on 3001')

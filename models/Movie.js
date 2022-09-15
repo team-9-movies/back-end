@@ -1,6 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Review Schema
+
+const ReviewSchema = new Schema(
+    {
+      text: { type: String, required: true },
+      user: {type:Schema.Types.ObjectId, ref:"User"},
+      email: { type: String, required: true },
+      nickName: String,
+      date: { type: Date, default: Date.now() }
+    });
+
+module.exports = Review = mongoose.model("Review", ReviewSchema);
 
 const MovieSchema = new Schema(
     {
@@ -13,7 +25,7 @@ const MovieSchema = new Schema(
         year: String,
         review: String,
         favoriteOf: [{ type: Schema.Types.ObjectId, ref: "User" }],
-        reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+        reviews: [ReviewSchema],
         date: { type: Date, default: Date.now() }
     });
 

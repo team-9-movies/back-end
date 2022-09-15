@@ -28,5 +28,5 @@ db.on("error", (err) =>
 
 module.exports.User = require("./User");
 module.exports.Movie = require("./Movie");
-module.exports.Review = require("./Review");
+// module.exports.Review = require("./Review");
 
