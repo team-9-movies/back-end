@@ -34,8 +34,9 @@ router.get('/favorites', async (req, res) => {
 
 router.post('/', async (req, res) => {
     let userEmail = req.body.email;
-    let userName = req.body.name;
-    let apiId = req.body.apiId;
+    let userName = req.body.name || 'Anonymous';
+    let apiId = req.body.id;
+    req.body.apiId = apiId;
 
     const user = await getUser(db.User, userEmail, userName);
 
