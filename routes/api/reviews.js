@@ -9,16 +9,15 @@ const db = require("../../models");
 router.get('/', (req,res) => {
 
     const apiId = req.query.apiid;
+    console.log(apiId);
     db.Movie.findOne({apiId: apiId}).populate({path:'reviews'})
-    .then(foundReview => {
-        console.log(foundReview.reviews)
-        res.send(foundReview.reviews)
-    
+    .then(foundReview => {  
+        const reviews = foundReview ? foundReview.reviews : []
+        res.status(200).send(reviews)    
     })  
     .catch(err => (
         console.log(err)
-    )) 
-
+    ))
 });
 
 
