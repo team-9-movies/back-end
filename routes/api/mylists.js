@@ -5,9 +5,6 @@ const db = require("../../models");
 const getUser = require("../../modules/getUser");
 
 router.get('/', (req, res) => {
-    // if(req.query.filter){
-    // let f = req.query.filter.spliit(',')
-    // console.log(f)
     db.Movie.find({ 'title': 'testing' }).sort('-date')
         .then(foundMovie => {
             res.send(foundMovie)

@@ -6,19 +6,24 @@ const router = express.Router();
 const db = require("../../models");
 
 //getting the review for the movie 
-router.get('/', async (req,res) => {
+router.get('/', (req,res) => {
 
     const apiId = req.query.apiid;
-    await db.Movie.find({apiId: apiId})
-    .populate({path:'reviews',select:'text'})
-    .then(foundReviews => {
-        res.send(foundReviews)
+    db.Movie.findOne({apiId: apiId}).populate({path:'reviews'})
+    .then(foundReview => {
+        console.log(foundReview.reviews)
+        res.send(foundReview.reviews)
+    
     })  
+    .catch(err => (
+        console.log(err)
+    )) 
 
-})
+});
 
 
-// adding comments
+
+// adding reviews to the movie
 router.put('/', (req,res)=>
 {
     const apiId = req.query.apiid;
