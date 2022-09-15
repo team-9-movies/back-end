@@ -7,7 +7,7 @@ const UserSchema = new Schema(
     email: { type: String, unique: true, required: true },
     name: String,
     movies: [
-        { type: Schema.Types.ObjectId, ref: 'Movie'}
+        { type: Schema.Types.ObjectId, ref: 'Movie', unique: true}
     ],
 });
 
