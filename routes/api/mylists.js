@@ -73,4 +73,12 @@ router.post('/', async (req, res) => {
 
 })
 
+// creating new user 
+router.post('/newUser', async(req, res) => {
+    db.User.create(req.body)
+    .then(createdUser => {
+        res.status(201).send(createdUser)
+    })
+ })
+
 module.exports = router;
