@@ -22,7 +22,9 @@ router.get('/', (req,res) => {
 
 //adding review to the movie
 router.put('/', (req,res)=>
+
 {
+    console.log('adding review body', req.body)
     const apiId = req.query.apiid;
     db.Movie.findOneAndUpdate({
         apiId:apiId
@@ -32,7 +34,7 @@ router.put('/', (req,res)=>
             reviews: {
             text: req.body.text, 
             user: req.body.user,
-            email: req.body.email,
+            email: req.body.userEmail,
             nickName: req.body.nickName
             }
         }       
@@ -42,7 +44,7 @@ router.put('/', (req,res)=>
     })
     .then(updatedMovie => {
         res.send(updatedMovie)
-        console.log(updatedMovie)
+        // console.log(updatedMovie)
     })
     .catch(err => {
         console.log(err)
@@ -80,21 +82,18 @@ router.put('/edit', (req,res)=>{
 //deleting review 
 router.put('/delete', (req,res)=>{   
     const apiId = req.query.apiid
-    console.log(apiId)
-    console.log(req.body.referencedReview)
     db.Movie.findOneAndUpdate(
         {
             apiId: apiId
         },
         {
-            $pull: {reviews: {_id: req.body.id}}
+            $pull: {reviews: {_id: req.body.reviewId}}
         },
         {
-            new: tru
+            new: true
         })
         .then(deletedcomment => {
             res.send(deletedcomment)
-            console.log(deletedcomment)
         })
         .catch(err => {
             console.log(err)
