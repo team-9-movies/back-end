@@ -81,16 +81,16 @@ router.put('/edit', (req,res)=>{
 router.put('/delete', (req,res)=>{   
     const apiId = req.query.apiid
     console.log(apiId)
-    console.log(req.body.referencedReview)
+    console.log(req.body.reviewId)
     db.Movie.findOneAndUpdate(
         {
             apiId: apiId
         },
         {
-            $pull: {reviews: {_id: req.body.id}}
+            $pull: {reviews: {_id: req.body.reviewId}}
         },
         {
-            new: tru
+            new: true
         })
         .then(deletedcomment => {
             res.send(deletedcomment)
