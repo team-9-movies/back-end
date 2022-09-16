@@ -27,7 +27,7 @@ const MovieSchema = new Schema(
         title: String,
         vote_average: Number,
         vote_count: Number,
-        favoriteOf: [{ type: Schema.Types.ObjectId, ref: "User", unique: true }],
+        favoriteOf: [{ type: Schema.Types.ObjectId, ref: "User"}],
         reviews: [ReviewSchema],
         date: { type: Date, default: Date.now() }
     });
