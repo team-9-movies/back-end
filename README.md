@@ -6,3 +6,8 @@ https://popcorn-critic.herokuapp.com/
 
 https://popcorn-critic.netlify.app/
 
+Authors:
+
+Alexx,
+Alice,
+Ayrat
