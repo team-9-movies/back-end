@@ -78,7 +78,7 @@ router.put('/delete', async (req, res)=>{
             email: email
         },
         {
-            $pull: {movies: req.body.movieId}
+            $pull: {movies: req.body.id}
         },
         {
             new: true
