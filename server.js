@@ -1,3 +1,5 @@
+require("dotenv").config();
+const PORT = process.env.PORT || 3001;
 const express = require('express');
 const SearchMovies = require('./modules/SearchMovies');
 const cors = require('cors');
@@ -23,6 +25,6 @@ app.use('/movies', movies);
 app.use('/mylists', myLists);
 app.use('/reviews', reviews);
 
-app.listen(3001, function() {
-    console.log('listening on 3001')
+app.listen(PORT, function() {
+    console.log(`listening on 3001 ${PORT}`)
 })
